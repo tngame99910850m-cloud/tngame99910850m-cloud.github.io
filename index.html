@@ -5,229 +5,740 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mouhib Hamrouni — IT Technician, Doha</title>
 <meta name="description" content="Mouhib Hamrouni — IT Technician in Doha, Qatar. First-line support for POS, kiosks, hardware and networks across multi-site retail & F&B.">
+<meta name="theme-color" content="#0B1C24">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --ink:#16232F;
-  --ink-soft:#43545F;
-  --paper:#EDF1F4;
-  --card:#FFFFFF;
-  --line:#D4DCE2;
-  --amber:#E09A2D;
-  --steel:#3E5C76;
-  --ok:#2E8B57;
-  --mono:'IBM Plex Mono',ui-monospace,monospace;
-  --sans:'IBM Plex Sans',system-ui,sans-serif;
-  --display:'Chivo',system-ui,sans-serif;
+:root {
+  --bg: #F3EEE6;
+  --bg-deep: #E7E0D4;
+  --ink: #0B1C24;
+  --muted: #5A6A72;
+  --line: rgba(11, 28, 36, 0.12);
+  --accent: #C45C26;
+  --sea: #1A5F6E;
+  --surface: rgba(255, 252, 247, 0.72);
+  --serif: "Instrument Serif", Georgia, serif;
+  --sans: "Manrope", system-ui, sans-serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6}
-a{color:var(--steel)}
-a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
 
-.wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ---------- top strip ---------- */
-.topbar{border-bottom:1px solid var(--line);background:var(--card)}
-.topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:52px;font-family:var(--mono);font-size:12.5px;color:var(--ink-soft)}
-.topbar .sys{display:flex;gap:8px;align-items:center}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--ok);display:inline-block;animation:pulse 2.4s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-@media (prefers-reduced-motion:reduce){.dot{animation:none}}
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 700px at 85% -10%, rgba(26, 95, 110, 0.14), transparent 55%),
+    radial-gradient(900px 600px at -10% 20%, rgba(196, 92, 38, 0.10), transparent 50%),
+    linear-gradient(180deg, #F7F3EC 0%, var(--bg) 40%, var(--bg-deep) 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px;
+  mix-blend-mode: multiply;
+  z-index: 0;
+}
+
+a {
+  color: var(--sea);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.2s var(--ease);
+}
+a:hover { color: var(--accent); }
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.wrap {
+  width: min(1080px, calc(100% - 2.5rem));
+  margin-inline: auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- nav ---------- */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.35rem 0 0;
+  gap: 1rem;
+}
+
+.nav-brand {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease);
+}
+
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { transform: scaleX(1); }
+
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+}
 
 /* ---------- hero ---------- */
-.hero{padding:64px 0 48px}
-.eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--steel);margin-bottom:14px}
-h1{font-family:var(--display);font-weight:900;font-size:clamp(2.4rem,7vw,4.4rem);line-height:1.02;letter-spacing:-.015em;text-transform:uppercase}
-h1 .thin{color:var(--amber)}
-.lede{max-width:620px;margin-top:20px;font-size:1.06rem;color:var(--ink-soft)}
-.statboard{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
-.chip{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:8px 14px;font-family:var(--mono);font-size:12.5px}
-.chip b{font-weight:500;color:var(--ink)}
-.chip span{color:var(--ink-soft)}
-.hero-cta{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
-.btn{font-family:var(--mono);font-size:13.5px;text-decoration:none;padding:11px 18px;border-radius:6px;border:1px solid var(--ink);color:var(--ink);background:transparent;transition:background .15s,color .15s}
-.btn.primary{background:var(--ink);color:var(--paper)}
-.btn.primary:hover{background:var(--steel);border-color:var(--steel)}
-.btn:hover{background:var(--ink);color:var(--paper)}
+.hero {
+  padding: clamp(4.5rem, 12vw, 7.5rem) 0 clamp(3.5rem, 8vw, 5.5rem);
+  min-height: min(88vh, 760px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
 
-/* ---------- layout ---------- */
-.grid{display:grid;grid-template-columns:300px 1fr;gap:40px;padding:48px 0 80px}
-@media(max-width:840px){.grid{grid-template-columns:1fr}}
-.rail{align-self:start;position:sticky;top:24px;display:flex;flex-direction:column;gap:22px}
-@media(max-width:840px){.rail{position:static}}
+.hero-mark {
+  width: 48px;
+  height: 3px;
+  background: var(--accent);
+  margin-bottom: 1.75rem;
+  transform-origin: left;
+  animation: draw 0.9s var(--ease) both;
+}
 
-.panel{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:20px 22px}
-.panel h2{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--steel);margin-bottom:14px}
-.contact li,.skill-list li,.lang li{list-style:none;font-size:14.5px;padding:6px 0;border-bottom:1px dashed var(--line)}
-.contact li:last-child,.skill-list li:last-child,.lang li:last-child{border-bottom:none}
-.contact li a{text-decoration:none;word-break:break-all}
-.contact li a:hover{text-decoration:underline}
-.label{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);display:block}
-.lang li{display:flex;justify-content:space-between}
-.lang .lvl{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft)}
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(3.2rem, 11vw, 6.4rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  animation: rise 0.9s var(--ease) 0.08s both;
+}
 
-/* ---------- main ---------- */
-.section{margin-bottom:48px}
-.section > h2{font-family:var(--display);font-weight:700;font-size:1.5rem;text-transform:uppercase;letter-spacing:.01em;margin-bottom:6px}
-.section > .sub{font-family:var(--mono);font-size:12.5px;color:var(--ink-soft);margin-bottom:22px}
+.hero h1 em {
+  font-style: italic;
+  color: var(--sea);
+}
 
-/* experience as an ops log */
-.job{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px;position:relative}
-.job::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:8px 0 0 8px;background:var(--steel)}
-.job.current::before{background:var(--amber)}
-.job-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:4px}
-.job h3{font-family:var(--display);font-weight:700;font-size:1.12rem}
-.dur{font-family:var(--mono);font-size:12px;color:var(--ink-soft);background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:3px 9px;white-space:nowrap;align-self:center}
-.org{font-size:14px;color:var(--ink-soft);margin-bottom:12px}
-.job ul{margin-left:18px}
-.job li{font-size:14.8px;margin-bottom:7px;color:var(--ink)}
-.job li::marker{color:var(--amber)}
+.hero-role {
+  margin-top: 1.5rem;
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  animation: rise 0.9s var(--ease) 0.16s both;
+}
 
-/* certs */
-.cert{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:15px 20px;margin-bottom:10px;font-size:14.5px}
-.cert .who{font-family:var(--mono);font-size:12px;color:var(--ink-soft);align-self:center;white-space:nowrap}
+.hero-lede {
+  margin-top: 0.85rem;
+  max-width: 34rem;
+  color: var(--muted);
+  font-size: 1.05rem;
+  animation: rise 0.9s var(--ease) 0.24s both;
+}
 
-/* competencies */
-.tags{display:flex;flex-wrap:wrap;gap:9px}
-.tag{font-family:var(--mono);font-size:12.5px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 14px;color:var(--ink)}
+.hero-cta {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  animation: rise 0.9s var(--ease) 0.32s both;
+}
 
-footer{border-top:1px solid var(--line);background:var(--card)}
-footer .wrap{padding:22px 20px;font-family:var(--mono);font-size:12px;color:var(--ink-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 0.85rem 1.35rem;
+  border-radius: 2px;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  transition: transform 0.25s var(--ease), background 0.25s, color 0.25s, border-color 0.25s;
+}
 
-@media print{
-  .topbar,.hero-cta,footer{display:none}
-  body{background:#fff}
-  .grid{grid-template-columns:280px 1fr;padding-top:0}
-  .panel,.job,.cert{border-color:#bbb}
+.btn:hover { transform: translateY(-2px); }
+
+.btn-primary {
+  background: var(--ink);
+  color: #F7F3EC;
+  border-color: var(--ink);
+}
+.btn-primary:hover {
+  background: var(--sea);
+  border-color: var(--sea);
+  color: #F7F3EC;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+.btn-ghost:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes draw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- sections ---------- */
+.section {
+  padding: 4.5rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  align-items: baseline;
+}
+
+@media (max-width: 700px) {
+  .section-head {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    margin-bottom: 1.75rem;
+  }
+}
+
+.section-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.85rem, 4vw, 2.4rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.section-title em { font-style: italic; color: var(--sea); }
+
+.profile-text {
+  max-width: 40rem;
+  color: var(--muted);
+  font-size: 1.08rem;
+  margin-left: calc(140px + 2rem);
+}
+
+@media (max-width: 700px) {
+  .profile-text { margin-left: 0; }
+}
+
+/* ---------- experience ---------- */
+.jobs {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-left: calc(140px + 2rem);
+}
+
+@media (max-width: 700px) {
+  .jobs { margin-left: 0; }
+}
+
+.job {
+  padding: 2rem 0;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: minmax(120px, 160px) 1fr;
+  gap: 1.5rem 2rem;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+
+.job.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 640px) {
+  .job { grid-template-columns: 1fr; gap: 0.65rem; }
+}
+
+.job-meta {
+  font-size: 0.86rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.job-meta .when {
+  display: block;
+  color: var(--ink);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.job.current .job-meta .when::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-right: 0.45rem;
+  vertical-align: middle;
+  box-shadow: 0 0 0 0 rgba(196, 92, 38, 0.45);
+  animation: live 2.4s ease-out infinite;
+}
+
+@keyframes live {
+  0% { box-shadow: 0 0 0 0 rgba(196, 92, 38, 0.4); }
+  70% { box-shadow: 0 0 0 8px rgba(196, 92, 38, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(196, 92, 38, 0); }
+}
+
+.job h3 {
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.2rem;
+}
+
+.job .org {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.job ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.job li {
+  position: relative;
+  padding-left: 1.1rem;
+  color: var(--ink);
+  font-size: 0.98rem;
+}
+
+.job li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 6px;
+  height: 1.5px;
+  background: var(--accent);
+}
+
+/* ---------- two-col ---------- */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-left: calc(140px + 2rem);
+}
+
+@media (max-width: 800px) {
+  .split {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-left: 0;
+  }
+}
+
+.block h3 {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.1rem;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.list li {
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.98rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.list li:first-child { border-top: 1px solid var(--line); }
+
+.list .lvl {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sea);
+  white-space: nowrap;
+}
+
+.certs {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-left: calc(140px + 2rem);
+}
+
+@media (max-width: 700px) {
+  .certs { margin-left: 0; }
+}
+
+.certs li {
+  padding: 1.15rem 0;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.certs li:last-child { border-bottom: 1px solid var(--line); }
+
+.certs .name { font-weight: 500; }
+.certs .who {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 500;
+  text-align: right;
+}
+
+@media (max-width: 640px) {
+  .certs li { grid-template-columns: 1fr; gap: 0.25rem; }
+  .certs .who { text-align: left; }
+}
+
+/* ---------- contact band ---------- */
+.contact-band {
+  margin: 1rem 0 4rem;
+  padding: clamp(2.5rem, 6vw, 3.5rem);
+  background: var(--ink);
+  color: #EDE8DF;
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.contact-band::before {
+  content: "";
+  position: absolute;
+  inset: auto -20% -40% 40%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(26, 95, 110, 0.45), transparent 65%);
+  pointer-events: none;
+}
+
+.contact-band .inner {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: flex-end;
+}
+
+.contact-band h2 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  max-width: 14ch;
+}
+
+.contact-band h2 em {
+  font-style: italic;
+  color: #E8A87C;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  font-size: 1rem;
+}
+
+.contact-links a {
+  color: #EDE8DF;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(237, 232, 223, 0.25);
+  padding-bottom: 0.15rem;
+  width: fit-content;
+  transition: border-color 0.25s, color 0.25s;
+}
+
+.contact-links a:hover {
+  color: #E8A87C;
+  border-color: #E8A87C;
+}
+
+.contact-place {
+  font-size: 0.88rem;
+  color: rgba(237, 232, 223, 0.55);
+  margin-top: 0.35rem;
+}
+
+/* ---------- footer ---------- */
+footer {
+  border-top: 1px solid var(--line);
+  padding: 1.5rem 0 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+  color: var(--muted);
+  position: relative;
+  z-index: 1;
+}
+
+@media print {
+  body::before { display: none; }
+  .nav-links, .hero-cta, .contact-band, footer { display: none; }
+  .hero { min-height: auto; padding: 1.5rem 0; }
+  body { background: #fff; }
 }
 </style>
 </head>
 <body>
 
-<div class="topbar">
-  <div class="wrap">
-    <div class="sys"><span class="dot" aria-hidden="true"></span> STATUS: AVAILABLE FOR WORK</div>
-    <div>DOHA · QATAR</div>
-  </div>
-</div>
+<div class="wrap">
+  <nav class="nav" aria-label="Primary">
+    <a class="nav-brand" href="#">Mouhib Hamrouni</a>
+    <ul class="nav-links">
+      <li><a href="#profile">Profile</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-<header class="hero">
-  <div class="wrap">
-    <p class="eyebrow">IT Technician · Multi-site Retail &amp; F&amp;B</p>
-    <h1>Mouhib<br>Hamrouni<span class="thin">.</span></h1>
-    <p class="lede">Nearly two years keeping POS terminals, kiosks, printers and networks running across head office, restaurant and kiosk sites — including 6 months as IT Officer in Charge. First-line support that keeps stores selling.</p>
-    <div class="statboard" aria-label="Key facts">
-      <div class="chip"><span>EXPERIENCE</span> <b>1y 10m</b></div>
-      <div class="chip"><span>POS / KIOSK</span> <b>DAILY OPS</b></div>
-      <div class="chip"><span>NETWORK</span> <b>LAN · WiFi</b></div>
-      <div class="chip"><span>ADOBE</span> <b>CERTIFIED</b></div>
-    </div>
+  <header class="hero">
+    <div class="hero-mark" aria-hidden="true"></div>
+    <h1>Mouhib<br><em>Hamrouni</em></h1>
+    <p class="hero-role">IT Technician · Multi-site Retail &amp; F&amp;B · Doha</p>
+    <p class="hero-lede">Nearly two years keeping POS terminals, kiosks, printers and networks running — including six months as IT Officer in Charge. First-line support that keeps stores selling.</p>
     <div class="hero-cta">
-      <a class="btn primary" href="mailto:mouhibhamrouni@outlook.com">Email me</a>
-      <a class="btn" href="tel:+97430920938">+974 3092 0938</a>
+      <a class="btn btn-primary" href="mailto:mouhibhamrouni@outlook.com">Email me</a>
+      <a class="btn btn-ghost" href="tel:+97430920938">+974 3092 0938</a>
     </div>
-  </div>
-</header>
+  </header>
 
-<div class="wrap grid">
-
-  <aside class="rail">
-    <div class="panel">
-      <h2>Contact</h2>
-      <ul class="contact">
-        <li><span class="label">Location</span> Doha, Qatar</li>
-        <li><span class="label">Phone</span> <a href="tel:+97430920938">+974 3092 0938</a></li>
-        <li><span class="label">Email</span> <a href="mailto:mouhibhamrouni@outlook.com">mouhibhamrouni@outlook.com</a></li>
-      </ul>
+  <section class="section" id="profile">
+    <div class="section-head">
+      <span class="section-label">01 — Profile</span>
+      <h2 class="section-title">Hands-on IT that keeps <em>sites open</em></h2>
     </div>
+    <p class="profile-text">IT professional with 1 year 4 months as an IT Technician plus 6 months as IT Officer in Charge. First-line support for hardware, POS terminals, kiosks, printers, and network infrastructure across multi-site retail and F&amp;B. Device deployment, POS and back-office integration, account administration, and troubleshooting under pressure — plus Adobe- and LinkedIn Learning-certified work in Photoshop, image editing, and generative AI content creation.</p>
+  </section>
 
-    <div class="panel">
-      <h2>Skills</h2>
-      <ul class="skill-list">
-        <li>Hardware, networking &amp; peripheral troubleshooting</li>
-        <li>POS systems &amp; back-office integration</li>
-        <li>Account &amp; access administration</li>
-        <li>Adobe Photoshop &amp; image editing</li>
-        <li>Generative AI content creation</li>
-        <li>Clear communication with non-technical staff</li>
-      </ul>
+  <section class="section" id="experience">
+    <div class="section-head">
+      <span class="section-label">02 — Experience</span>
+      <h2 class="section-title">Work that shipped <em>uptime</em></h2>
     </div>
-
-    <div class="panel">
-      <h2>Languages</h2>
-      <ul class="lang">
-        <li>Arabic <span class="lvl">NATIVE</span></li>
-        <li>English <span class="lvl">FLUENT</span></li>
-        <li>French <span class="lvl">FLUENT</span></li>
-      </ul>
-    </div>
-  </aside>
-
-  <main>
-    <section class="section" id="profile">
-      <h2>Profile</h2>
-      <p>IT professional with 1 year 4 months of hands-on experience as an IT Technician plus 6 months as IT Officer in Charge, providing first-line support for hardware, POS terminals, kiosks, printers, and network infrastructure across multi-site retail and F&amp;B environments. Skilled in device deployment, POS and back-office integration, account and access administration, and troubleshooting under pressure. Adobe- and LinkedIn Learning-certified in Photoshop, image editing, and generative AI content creation.</p>
-    </section>
-
-    <section class="section" id="experience">
-      <h2>Work Experience</h2>
+    <div class="jobs">
       <article class="job current">
-        <div class="job-head">
-          <h3>IT Officer in Charge</h3>
-          <span class="dur">6 MONTHS</span>
+        <div class="job-meta">
+          <span class="when">6 months</span>
+          Doha, Qatar
         </div>
-        <p class="org">QSR Management — Doha, Qatar</p>
-        <ul>
-          <li>Took ownership of day-to-day IT and POS operations across head office, restaurant, and kiosk sites.</li>
-          <li>Integrated and maintained POS and back-office systems, including delivery platform and third-party integrations.</li>
-          <li>Maintained LAN/WiFi, routers, and connectivity across all locations, monitoring uptime and resolving outages.</li>
-          <li>Managed user accounts and access, including email, licenses, shared drives, and asset inventory.</li>
-        </ul>
+        <div>
+          <h3>IT Officer in Charge</h3>
+          <p class="org">QSR Management</p>
+          <ul>
+            <li>Owned day-to-day IT and POS operations across head office, restaurant, and kiosk sites.</li>
+            <li>Integrated and maintained POS and back-office systems, including delivery platforms and third-party tools.</li>
+            <li>Kept LAN, WiFi, and routers healthy across locations — monitoring uptime and clearing outages.</li>
+            <li>Managed accounts and access: email, licenses, shared drives, and asset inventory.</li>
+          </ul>
+        </div>
       </article>
 
       <article class="job">
-        <div class="job-head">
-          <h3>IT Technician</h3>
-          <span class="dur">1 YEAR 4 MONTHS</span>
+        <div class="job-meta">
+          <span class="when">1 year 4 months</span>
+          Doha, Qatar
         </div>
-        <p class="org">QSR Management — Doha, Qatar</p>
-        <ul>
-          <li>Provided first-line support for hardware, POS terminals, kiosks, printers, and peripherals across head office, restaurant, and kiosk sites.</li>
-          <li>Diagnosed and resolved break/fix issues, escalating unresolved cases as needed.</li>
-          <li>Set up, imaged, and deployed new devices for head office and store staff, and trained staff on POS and related systems.</li>
-        </ul>
+        <div>
+          <h3>IT Technician</h3>
+          <p class="org">QSR Management</p>
+          <ul>
+            <li>First-line support for hardware, POS terminals, kiosks, printers, and peripherals across all sites.</li>
+            <li>Diagnosed break/fix issues and escalated unresolved cases when needed.</li>
+            <li>Imaged and deployed devices for office and store staff; trained teams on POS and related systems.</li>
+          </ul>
+        </div>
       </article>
-    </section>
+    </div>
+  </section>
 
-    <section class="section" id="certifications">
-      <h2>Certifications</h2>
-      <div class="cert"><span>Essential Skills in Adobe Photoshop 2024 — Professional Certificate</span><span class="who">LINKEDIN LEARNING &amp; ADOBE · OCT 2025</span></div>
-      <div class="cert"><span>Design Fundamentals with AI</span><span class="who">ADOBE · COURSERA · JAN 2026</span></div>
-      <div class="cert"><span>Generative AI Content Creation</span><span class="who">ADOBE · COURSERA · JAN 2026</span></div>
-    </section>
-
-    <section class="section" id="competencies">
-      <h2>Competencies</h2>
-      <div class="tags">
-        <span class="tag">Problem-solving under pressure</span>
-        <span class="tag">Ownership &amp; follow-through</span>
-        <span class="tag">Service orientation</span>
-        <span class="tag">Adaptability across sites &amp; markets</span>
+  <section class="section" id="skills">
+    <div class="section-head">
+      <span class="section-label">03 — Capabilities</span>
+      <h2 class="section-title">What I bring <em>on site</em></h2>
+    </div>
+    <div class="split">
+      <div class="block">
+        <h3>Skills</h3>
+        <ul class="list">
+          <li>Hardware, networking &amp; peripheral troubleshooting</li>
+          <li>POS systems &amp; back-office integration</li>
+          <li>Account &amp; access administration</li>
+          <li>Adobe Photoshop &amp; image editing</li>
+          <li>Generative AI content creation</li>
+          <li>Clear communication with non-technical staff</li>
+        </ul>
       </div>
-    </section>
-  </main>
+      <div class="block">
+        <h3>Languages</h3>
+        <ul class="list">
+          <li>Arabic <span class="lvl">Native</span></li>
+          <li>English <span class="lvl">Fluent</span></li>
+          <li>French <span class="lvl">Fluent</span></li>
+        </ul>
+        <h3 style="margin-top: 2.25rem;">Strengths</h3>
+        <ul class="list">
+          <li>Problem-solving under pressure</li>
+          <li>Ownership &amp; follow-through</li>
+          <li>Service orientation</li>
+          <li>Adaptability across sites &amp; markets</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="certifications">
+    <div class="section-head">
+      <span class="section-label">04 — Certifications</span>
+      <h2 class="section-title">Credentials, <em>kept current</em></h2>
+    </div>
+    <ul class="certs">
+      <li>
+        <span class="name">Essential Skills in Adobe Photoshop 2024 — Professional Certificate</span>
+        <span class="who">LinkedIn Learning &amp; Adobe · Oct 2025</span>
+      </li>
+      <li>
+        <span class="name">Design Fundamentals with AI</span>
+        <span class="who">Adobe · Coursera · Jan 2026</span>
+      </li>
+      <li>
+        <span class="name">Generative AI Content Creation</span>
+        <span class="who">Adobe · Coursera · Jan 2026</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="contact-band" id="contact">
+    <div class="inner">
+      <div>
+        <h2>Let’s keep your sites <em>running</em>.</h2>
+        <p class="contact-place">Based in Doha, Qatar · Available for work</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:mouhibhamrouni@outlook.com">mouhibhamrouni@outlook.com</a>
+        <a href="tel:+97430920938">+974 3092 0938</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Mouhib Hamrouni</span>
+    <span>Doha, Qatar</span>
+  </footer>
 </div>
 
-<footer>
-  <div class="wrap">
-    <span>© 2026 Mouhib Hamrouni</span>
-    <span>Built as a single HTML file · loads fast anywhere</span>
-  </div>
-</footer>
-
+<script>
+(() => {
+  const jobs = document.querySelectorAll(".job");
+  if (!("IntersectionObserver" in window) || !jobs.length) {
+    jobs.forEach((el) => el.classList.add("in"));
+    return;
+  }
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          io.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.18, rootMargin: "0px 0px -40px 0px" }
+  );
+  jobs.forEach((el) => io.observe(el));
+})();
+</script>
 </body>
 </html>
